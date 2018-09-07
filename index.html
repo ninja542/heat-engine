@@ -12,7 +12,22 @@
 					<input type="range" min="1" max="200" v-model.number="particlenum">
 				</div>
 				<div>
-					<label> Height of container: {{height}}</label>
+					<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" v-show="lock!=true" v-on:click="lock=true">
+						<title>Gas can affect container height</title>
+				    <path d="M0 0h24v24H0z" fill="none"/>
+				    <path d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6h1.9c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm0 12H6V10h12v10z"/>
+					</svg>
+					<svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" v-show="lock" v-on:click="lock=false">
+						<title>Gas can not affect container height</title>
+				    <defs>
+				        <path d="M0 0h24v24H0V0z" id="a"/>
+				    </defs>
+				    <clipPath id="b">
+				        <use overflow="visible" xlink:href="#a"/>
+				    </clipPath>
+				    <path clip-path="url(#b)" d="M12 17c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm6-9h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM8.9 6c0-1.71 1.39-3.1 3.1-3.1s3.1 1.39 3.1 3.1v2H8.9V6zM18 20H6V10h12v10z"/>
+					</svg>
+					<label> Container height: {{height}}</label>
 					<input type="range" v-model.number = "height" min="50" max="800">
 				</div>
 				<div>
@@ -29,8 +44,6 @@
 				<p> Measured Temperature: {{measuredTemp.toFixed(4)}} Kelvin </p>
 				<p> Calculated Temperature from PV=nRT from Measured Pressure: {{calculatedTemp.toFixed(4)}} Kelvin</p>
 				<p> Measured Pressure: {{measuredPressure.toPrecision(4)}} Pascals </p>
-				<p> Notes: <button v-on:click="show = !show">{{show ? "Hide" : "Show"}}</button></p>
-				<p v-show="show"> The lock button next to the heating and cooling buttons "lock" the heating/cooling so you don't have to continuously hold the buttons down.
 				</p>
 			</div>
 		</div>

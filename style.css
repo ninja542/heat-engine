@@ -5,7 +5,7 @@ canvas {
 #canvas {
 	position: absolute;
 	top: 4px;
-	left: 310px;
+	left: 320px;
 	z-index: 2;
 }
 #canvas2 {
@@ -14,7 +14,7 @@ canvas {
 	border-color: #000;
 	position: absolute;
 	top: 4px;
-	left: 310px;
+	left: 320px;
 	z-index: 1;
 }
 .canvas_container{
@@ -24,10 +24,10 @@ canvas {
 	letter-spacing: 10px
 }
 #controls {
-	width: 300px;
+	width: 310px;
 }
 .graph {
 	top: 0px;
-	left: 720px;
+	left: 730px;
 	position: absolute;
 }

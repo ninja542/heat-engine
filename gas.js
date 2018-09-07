@@ -107,6 +107,10 @@ Ball.prototype.update = function(){
 		if (this.x_speed != 0){ // to make sure that particles do not disappear from a undefined atan
 			this.x_speed = Math.sign(this.x_speed) * v_init * Math.cos(theta);
 		}
+		if (app.lock == false && app.dh == 0){
+			app.height -= Math.floor(this.y_speed / 4);
+			this.y_speed *= 0.5;
+		}
 	}
 };
 // separate function so that the particles can check for bouncing after the update, also it was easier to separate updating and bouncing from each other for better coding.
@@ -148,7 +152,7 @@ let app = new Vue({
 		height: 600,
 		track_particle: false,
 		fps: 60,
-		lock: false,
+		lock: true,
 		show: false,
 		oldheight: 600,
 		dh: 0
