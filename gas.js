@@ -77,7 +77,7 @@ Ball.prototype.draw = function(){
 	context.fillStyle = "#0000FF";
 	context.fill();
 };
-Ball.prototype.update = function(heating){
+Ball.prototype.update = function(){
 	this.x += this.x_speed;
 	this.y += this.y_speed;
 	let left_x = this.x - this.radius;
@@ -99,23 +99,10 @@ Ball.prototype.update = function(heating){
 	else if (bottom_y > app.height){ // hitting bottom wall
 		let theta = Math.atan(Math.abs(this.y_speed/this.x_speed)); // theta variable to ensure that particles still hit the bottom with the same angle as before, but faster
 		let v_init = totalVelocity(this.x_speed, this.y_speed); // initial velocity so that the y_speed can be increased by the correct amount to keep the angle
-		if (heating == "cold"){
-			v_init -= 0.5;
-			this.y = app.height - this.radius;
-			this.y_speed = -v_init*Math.sin(theta);
-		}
-		else if (heating == "hot"){
-			v_init += 0.5;
-			this.y = app.height - this.radius;
-			// this.y_speed = -this.y_speed - 1;
-			this.y_speed = -v_init*Math.sin(theta);
-		}
-		else {
-			this.y = app.height - this.radius;
-			this.y_speed = -this.y_speed;
-			if (app.dh < 0){
-					this.y_speed += app.dh;
-				}
+		this.y = app.height - this.radius;
+		this.y_speed = -this.y_speed;
+		if (app.dh < 0){
+			this.y_speed += app.dh;
 		}
 		if (this.x_speed != 0){ // to make sure that particles do not disappear from a undefined atan
 			this.x_speed = Math.sign(this.x_speed) * v_init * Math.cos(theta);
@@ -161,28 +148,12 @@ let app = new Vue({
 		height: 600,
 		track_particle: false,
 		fps: 60,
-		heating: "none",
 		lock: false,
 		show: false,
 		oldheight: 600,
 		dh: 0
 	},
 	computed: {
-		plate: function(){
-			if (this.heating == "cold"){
-				/* cold plate */
-				return {borderBottomColor:  "#00CCFF",
-								borderBottomWidth: "4px"}; // makes the heating plate look real
-			}
-			else if (this.heating == "hot"){
-				/* hot plate */
-				return {borderBottomColor:  "#F00",
-								borderBottomWidth: "4px"};
-			}
-			else {
-				return {borderBottomWidth: "1px"};
-			}
-		},
 		dimension: function(){ // needed to make sure that canvas/the border changes size
 			return {width: this.width,
 							height: this.height};
