@@ -107,9 +107,9 @@ Ball.prototype.update = function(){
 		if (this.x_speed != 0){ // to make sure that particles do not disappear from a undefined atan
 			this.x_speed = Math.sign(this.x_speed) * v_init * Math.cos(theta);
 		}
-		if (app.lock == false && app.dh == 0){
-			app.height -= Math.floor(this.y_speed / 4);
-			this.y_speed *= 0.5;
+		if (app.lock == false && app.dh == 0 && (this.y_speed > 1 || this.y_speed < -1)){
+			app.height += 1;
+			this.y_speed += 1;
 		}
 	}
 };
