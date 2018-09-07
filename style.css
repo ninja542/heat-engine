@@ -20,15 +20,6 @@ canvas {
 .canvas_container{
 	overflow: visible;
 }
-#border{
-	border-style: solid;
-	border-color: #000;
-	border-width: 1px;
-	position: absolute;
-	top: 4px;
-	left: 310px;
-	z-index: 3;
-}
 #key {
 	letter-spacing: 10px
 }
