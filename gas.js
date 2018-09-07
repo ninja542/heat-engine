@@ -204,7 +204,7 @@ let app = new Vue({
 			// uses radius variable to ensure future changeability, could also potentially be linked in vue to mass and stuff to provide more variables to change
 			this.particles.forEach(p => context.clearRect(p.x-(radius+1), p.y-(radius+1), 2*radius+2, 2*radius+2));
 			this.particles.forEach((p,i) => p.bounce(p, i));
-			this.particles.forEach(p => p.update(this.heating));
+			this.particles.forEach(p => p.update());
 			if(this.track_particle == true){
 				// draws the colorful circles as a trail
 				context2.beginPath();
