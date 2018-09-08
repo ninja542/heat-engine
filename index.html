@@ -1,6 +1,6 @@
 <html>
 	<head>
-		<title>Ideal Gas Simulator</title>
+		<title>Heat Engine Simulator</title>
 		<link href="style.css" rel="stylesheet">
 		<meta name="viewport" content="width=device-width,user-scalable=no">
 	</head>
@@ -46,6 +46,7 @@
 				<p> Measured Pressure: {{measuredPressure.toPrecision(4)}} Pascals </p>
 				</p>
 			</div>
+			<div id="canvas_style" v-bind:style="{height: height+'px', width: width+'px'}"></div>
 		</div>
 		<div class="graph">
 		</div>
@@ -54,7 +55,7 @@
 			<canvas width="width" height="height" id="canvas"></canvas>
 			<canvas width="width" height="height" id="canvas2"></canvas>
 		</div>
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+		<script src="https://vuejs.org/js/vue.js"></script>
 		<script src="https://d3js.org/d3.v5.min.js"></script>
 		<script src="gas.js"></script>
 	</body>

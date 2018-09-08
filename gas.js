@@ -281,18 +281,18 @@ let app = new Vue({
 		},
 		// changing the width and height of both canvases at the same time
 		width: function(){
-			canvas.width = this.width;
-			canvas.style.width = this.width;
+			// canvas.width = this.width;
+			// canvas.style.width = this.width;
 
-			canvas2.width = this.width;
-			canvas2.style.width = this.width;
+			// canvas2.width = this.width;
+			// canvas2.style.width = this.width;
 		},
 		height: function(val){
-			canvas.height = this.height;
-			canvas.style.height = this.height;
+			// canvas.height = this.height;
+			// canvas.style.height = this.height;
 
-			canvas2.height = this.height;
-			canvas2.style.height = this.height;
+			// canvas2.height = this.height;
+			// canvas2.style.height = this.height;
 		},
 		track_particle: function(){ // pressing the track_particle checkbox erases the current board, provides easy erase function without having an erase button
 			context2.clearRect(0, 0, this.width, this.height);
