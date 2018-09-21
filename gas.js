@@ -13,7 +13,7 @@ let colorscale = d3.scaleSequential(d3.interpolateRainbow);
 let canvas = document.getElementById("canvas");
 let canvas2 = document.getElementById("canvas2");
 let width = 400;
-let height = 600;
+let height = 800;
 canvas.width = width;
 canvas.height = height;
 let context = canvas.getContext('2d');
@@ -25,7 +25,7 @@ const radius = 5;
 const mass = 1e-21;
 const R = 8.314;
 const k = R / 6.02e+23;
-const scaledh = 1.0/60.0;
+const scaledh = 1.0/60; // might be too little of scale? except if no scaling, the particles move like crazy
 
 // d3 stuff
 let xScale = d3.scaleLinear().domain([0, 5]).range([0, graphwidth]);
@@ -193,7 +193,13 @@ let app = new Vue({
 			}
 			else if(this.particlenum > this.particles.length){
 				for(let i = this.particles.length; i < this.particlenum; i++){
-					this.particles.push(new Ball(Math.floor(Math.random()*this.width), Math.floor(Math.random()*this.height)));
+					tempx = Math.floor(Math.random()*this.width);
+					tempy = Math.floor(Math.random()*this.height);
+					while(particleObstruct(tempx, tempy) == false){
+						tempx = Math.floor(Math.random()*this.width);
+						tempy = Math.floor(Math.random()*this.height);
+					}
+					this.particles.push(new Ball(tempx, tempy));
 					// pushes new particles in random places, need a better algorithm to avoid particles spawning within each other.
 				}
 			}
@@ -327,10 +333,18 @@ function randNeg(){ // needed to generate negative sign randomly for more intere
 function totalVelocity(x, y){ // to make code easier to read
 	return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2));
 }
-function particleObstruct(particle){
+function particleObstruct(x, y){
 	for(let i = 0; i < this.particlenum; i++){
-		if(particle.x < app.particles[i].x + radius || particle.x > app.particles[i].x - radius){
-
+		if(x < app.particles[i].x + radius && x > app.particles[i].x - radius){
+			if(y < app.particles[i].y + radius && y > app.particles[i].y - radius){
+				return true;
+			}
+			else{
+				return false;
+			}
+		}
+		else{
+			return false;
 		}
 	}
 }
